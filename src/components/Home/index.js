@@ -1,8 +1,12 @@
 import React from 'react';
+import Navbar from '../Navbar';
+import { ContenedorHome } from './style';
 
 const Home = () => {
     return (
-        <div>HOME</div>
+        <ContenedorHome>
+            <Navbar />
+        </ContenedorHome>
     );
 }
  

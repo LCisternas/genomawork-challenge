@@ -1,5 +1,6 @@
-import { GOOD_LOGIN } from '../type';
+import { GOOD_LOGIN, GOOD_LOGOUT } from '../type';
 import axiosLogin from '../../config/axiosLogin';
+import axiosLogout from '../../config/axiosLogout';
 import userAuth from '../../config/userAuth';
 
 export function LoginAuth(info) {
@@ -21,4 +22,22 @@ export function LoginAuth(info) {
 const successLogin = (info) => ({
     type: GOOD_LOGIN,
     payload: info
+})
+
+export function LogoutAuth(info) {
+    return async (dispatch) => {
+        try {
+            await axiosLogout.post('', {}, {
+                headers: {
+                    "Authorization": info
+                }
+            })
+            dispatch( successLogout() )
+        } catch (error) {
+            console.log('Desde AuthActions -->', error)
+        }
+    }
+}
+const successLogout = () => ({
+    type: GOOD_LOGOUT,
 })

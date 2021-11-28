@@ -16,9 +16,9 @@ const ContenedorApp = styled.div`
 
 function App() {
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <UserProvider>
+    <Provider store={store}>  
+      <UserProvider>
+        <BrowserRouter>
           <ContenedorApp>
             <Switch>
               <Route exact path="/" component={Login} />
@@ -26,9 +26,9 @@ function App() {
               <PrivateRoute  exact path='/add' component={Add} />
             </Switch>
           </ContenedorApp>
-        </UserProvider>
-      </Provider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </UserProvider>
+    </Provider>
   );
 }
 

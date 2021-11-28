@@ -1,46 +1,76 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { authentication } from '../../state/actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '../../state/context/userContext';
 
-import { ContenedorLogin, LoginImagen, LoginForm, Content } from './style';
+import { LoginAuth } from '../../state/actions/authActions';
 
+import { ContenedorLogin, LoginImagen, LoginForm, Content } from './style';
 import Swal from 'sweetalert2';
+
 
 const Login = () => {
 
-    // const [user, setUser] = useState({ email: '', password: '' })
-
+    /* GLOBAL STATE */
     const { user, setUser } = useContext(UserContext)
-
+    const { email, password } = user
     const dispatch = useDispatch();
+    const sendAuth = (info) => dispatch( LoginAuth(info) )
+    const userAuth = useSelector( state => state.auth.authenticated )
+    /* GLOBAL STATE */
     const history = useHistory();
-
-    const auth = (info) => dispatch( authentication(info) )
-
-    const handleSubmit = e => {
-        e.preventDefault()
-        if(user.email === '' || user.password === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Ambos campos deben ser completados',
-            })
-        }
-        const encode = "Basic " + btoa(user.email + '::' + user.password)
-        auth(encode)
-        const redirect = () => {
+    
+    useEffect(() => {
+        if(userAuth) {
             history.push('/home')
         }
-        setTimeout(redirect, 1000)
-    }
-    
+    }, [userAuth])
+
+    /* FUNCTIONS */
     const handleChange = e => {
         setUser({
             ...user,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
+    const handleSubmit = e => {
+        e.preventDefault()
+        /* VALIDACIONES */
+        if(email === '' && password === '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Ambos campos deben ser completados'
+            })
+        }
+        if(email === '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Debes ingresar un email'
+            })
+        }
+        if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)){
+            return Swal.fire({
+                icon: 'error',
+                title: 'Debes ingresar un email con formato valido'
+            })
+        }
+        if(password === '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Debes ingresar una contraseña'
+            })
+        }
+        if(password.length < 6) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'La contraseña debe contar con 6 o mas caracteres'
+            })
+        }
+        /* VALIDACIONES */
+        const encode = "Basic " + btoa(email + "::" + password)
+        sendAuth(encode)
+    }
+    /* FUNCTIONS */
 
     return (
         <ContenedorLogin>
@@ -55,16 +85,16 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <input
-                        type='email'
+                        type='text'
                         name='email'
-                        value={user.email}
+                        value={email}
                         onChange={handleChange}
                         placeholder='Correo electronico'
                     />
                     <input 
                         type='password'
                         name='password'
-                        value={user.password}
+                        value={password}
                         onChange={handleChange}
                         placeholder='Contraseña'
                     />

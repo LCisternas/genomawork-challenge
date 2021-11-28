@@ -1,4 +1,4 @@
-import { LOGIN_EXITOSO } from '../type';
+import { GOOD_LOGIN } from '../type';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -8,11 +8,10 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
     switch(action.type) {
-        case LOGIN_EXITOSO:
+        case GOOD_LOGIN:
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
-                token: localStorage.getItem('token'),
                 authenticated: true,
                 user: action.payload.user
             }

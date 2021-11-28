@@ -1,21 +1,24 @@
-import { LOGIN_EXITOSO } from '../type';
-import axios from 'axios';
+import { GOOD_LOGIN } from '../type';
+import axiosLogin from '../../config/axiosLogin';
+import userAuth from '../../config/userAuth';
 
-export function authentication(info) {
+export function LoginAuth(info) {
     return async (dispatch) => {
+        localStorage.setItem('datauser', info)
         try {
-            const url = "https://api.staging.genoma.work/api/v1/accounts/login/"
-            axios.post(url, {}, {
-                headers: {'Authorization': info}
+            await axiosLogin.post('', {}, {
+                headers: {
+                    "Authorization": info
+                }
             }).then(res => {
-                dispatch(loginExitoso(res.data))
+                dispatch( successLogin(res.data) )
             })
         } catch (error) {
-            console.log(error)
+            console.log('Desde authActions -->', error)
         }
     }
 }
-const loginExitoso = ( info ) => ({
-    type: LOGIN_EXITOSO,
+const successLogin = (info) => ({
+    type: GOOD_LOGIN,
     payload: info
 })

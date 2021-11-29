@@ -7,6 +7,8 @@ import { ContenedorTable, Tabla, Titulos, Data, Boton } from './style';
 import { OneRestaurant } from '../../state/actions/restaurantActions';
 import { DeleteRestaurant } from '../../state/actions/restaurantActions';
 
+import Rating from '@mui/material/Rating';
+
 const Table = () => {
 
     const dispatch = useDispatch()
@@ -54,7 +56,7 @@ const Table = () => {
                             <td> {restaurant.name} </td>
                             <td> {restaurant.location} </td>
                             <td> {restaurant.food} </td>
-                            <td> {restaurant.rating} </td>
+                            <td> <Rating name="read-only" value={restaurant.rating} size="large" readOnly /> </td>
                             {restaurant.visited ? (<td>Visitado</td>) : (<td>Pendiente</td>)}
                             <td>  
                                 <Boton 

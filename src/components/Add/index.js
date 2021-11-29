@@ -32,9 +32,7 @@ const Add = () => {
         })
     }
     const history = useHistory()
-    const redirect = () => {
-        history.push('/home')
-    }
+    
     const handleSubmit = e => {
         e.preventDefault()
         if(name === '' || location === '' || food === '' || rating === '') {
@@ -46,7 +44,7 @@ const Add = () => {
         newRestaurant.rating = parseInt(rating)
         const restaurant = [token, newRestaurant]
         post(restaurant)
-        redirect()
+        history.push('/home')
     }
 
     return (

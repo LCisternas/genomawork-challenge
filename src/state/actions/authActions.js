@@ -1,7 +1,6 @@
 import { GOOD_LOGIN, GOOD_LOGOUT } from '../type';
 import axiosLogin from '../../config/axiosLogin';
 import axiosLogout from '../../config/axiosLogout';
-import userAuth from '../../config/userAuth';
 
 export function LoginAuth(info) {
     return async (dispatch) => {

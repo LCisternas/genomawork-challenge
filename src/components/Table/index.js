@@ -1,24 +1,37 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Swal from 'sweetalert2';
 import { ContenedorTable, Tabla, Titulos, Data, Boton } from './style';
 
 import { OneRestaurant } from '../../state/actions/restaurantActions';
+import { DeleteRestaurant } from '../../state/actions/restaurantActions';
 
 const Table = () => {
 
     const dispatch = useDispatch()
     const selectRestaurant = (info) => dispatch( OneRestaurant(info) )
-    const restaurants = useSelector(state => state.restaurants.allRestaurants[0])
+    const borrarRestaurant = (info) => dispatch( DeleteRestaurant(info) )
+    const token = useSelector(state => state.auth.token)
+    const restaurants = useSelector(state => state.restaurants.allRestaurants)
     const history = useHistory()
     const redirect = (id, info) => {
         selectRestaurant(info)
         history.push(`/edit/${id}`)
     }
-    useEffect(() => {
 
-    }, [restaurants])
+    const borrar = (info) => {
+        const arr = [token, info]
+        Swal.fire({
+            title: '¿Seguro que quieres borrar el restaurante?',
+            confirmButtonText: 'Si!',
+            showCancelButton: true
+        }).then((result) => {
+            if(result.isConfirmed) {
+              borrarRestaurant(arr)
+            }
+        })
+    }
 
     if(!restaurants) return null
 
@@ -50,7 +63,7 @@ const Table = () => {
                                 ><i className="far fa-edit"></i> </Boton>
                                 <Boton
                                     type='button'
-                                    
+                                    onClick={() => borrar(restaurant.id)}
                                 ><i className="far fa-trash-alt"></i> </Boton>
                             </td>
                         </tr>

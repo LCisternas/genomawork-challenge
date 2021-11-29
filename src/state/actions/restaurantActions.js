@@ -1,6 +1,5 @@
-import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT } from '../type';
+import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT,DELETE_RESTAURANT } from '../type';
 import axios from 'axios';
-import axiosRestaurant from '../../config/axiosRestaurant';
 
 export function AllRestaurant(info) {
     return async (dispatch) => {
@@ -57,16 +56,40 @@ const updateState = (info) => ({
 
 export function PostRestaurant(info) {
     return async (dispatch) => {
-        const url = 'https://genoma-challenge-app.herokuapp.com/restaurants/'
-        const [token, restaurant] = info
-        await axios.post(url, restaurant, {headers:{
-            "Authorization": "Token " + token 
-        }}).then(res => {
-            dispatch(addRestaurant(res.data))
-        })
+        try {
+            const url = 'https://genoma-challenge-app.herokuapp.com/restaurants/'
+            const [token, restaurant] = info
+            await axios.post(url, restaurant, {headers:{
+                "Authorization": "Token " + token 
+            }}).then(res => {
+                dispatch(addRestaurant(res.data))
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 const addRestaurant = (info) => ({
     type: NEW_RESTAURANT,
+    payload: info
+})
+
+export function DeleteRestaurant(info) {
+    return async (dispatch) => {
+        try {
+            const [token, id] = info
+            const url = `https://genoma-challenge-app.herokuapp.com/restaurants/${id}/`
+            await axios.delete(url, {headers: {
+                "Authorization": "Token " + token
+            }}).then(res => {
+                dispatch( deleteState(id) )
+            })
+        } catch (error) {
+            console.log('desde restaurantAction', error)
+        }
+    }
+}
+const deleteState = (info) => ({
+    type: DELETE_RESTAURANT,
     payload: info
 })

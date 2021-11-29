@@ -11,13 +11,16 @@ const Home = () => {
     const dispatch = useDispatch()
     const restaurantes = (info) => dispatch( AllRestaurant(info) )
     const token = "Token " + useSelector(state => state.auth.token)
-    const restaurants = useSelector(state => state.restaurants.allRestaurants[0])
+    const restaurants = useSelector(state => state.restaurants.allRestaurants)
 
     useEffect(() => {
         if(token) {
+            if(restaurants.length === 0) {
+                return restaurantes(token)
+            }
             restaurantes(token)
         }
-    }, [token])
+    }, [])
 
     return (
         <ContenedorHome>

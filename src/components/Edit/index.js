@@ -33,9 +33,7 @@ const Edit = () => {
         })
     }
     const history = useHistory()
-    const redirect = () => {
-        history.push('/home')
-    } 
+
     const handleSubmit = e => {
         e.preventDefault()
         if(name === '' || location === '' || food === '' || rating === '') {
@@ -48,7 +46,7 @@ const Edit = () => {
         restaurant.rating = parseInt(rating)
         const info = [token, restaurant]
         update(info)
-        redirect()
+        history.push('/home')
     }
     
 

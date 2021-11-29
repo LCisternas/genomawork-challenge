@@ -5,16 +5,11 @@ const UserProvider = (props) => {
 
     const [user, setUser] = useState({ email: '', password: '' })
 
-    const Encode = (val, key) => {
-        return btoa("Basic " + "::" + val + key)
-    }
-
     return (
         <UserContext.Provider
             value={{
                 user,
                 setUser,
-                Encode
             }}
         >
             { props.children }

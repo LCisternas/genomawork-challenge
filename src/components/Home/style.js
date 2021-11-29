@@ -10,9 +10,19 @@ export const ContenedorHome = styled.div`
         text-align: center;
         color: #f7797d;
     }
+    @media all and (max-width: 768px) {
+        h1 {
+            margin: 2rem;
+            width: 100%;
+            font-size: 2.4rem;
+        }
+    }
 `
 export const Filtros = styled.div`
     width: 80%;
     display: flex;
     justify-content: space-between;
+    @media all and (max-width: 768px) {
+        width: 100%;
+    }
 `

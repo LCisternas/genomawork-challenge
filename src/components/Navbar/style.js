@@ -7,6 +7,10 @@ export const ContenedorNavbar = styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: #FDB99B;
+    @media all and (max-width: 768px) {
+        flex-direction: column;
+        height: 20%;
+    }
 `
 export const Logo = styled.div`
     width: 50%;
@@ -16,6 +20,13 @@ export const Logo = styled.div`
     align-items: center;
     justify-content: center;
     color: #f7797d;
+    @media all and (max-width: 768px) {
+        width: 100%;
+        height: 50%;
+        h1 {
+            font-size: 2rem;
+        }
+    }
 `
 export const Botones = styled.div`
     width: 50%;
@@ -32,12 +43,21 @@ export const Botones = styled.div`
         border-radius: 10px;
         margin: 0 1rem;
         height: 50%;
-        width: 25%;
+        width: 35%;
         cursor: pointer;
         transition: all 0.3s;
         &:hover {
             background-color: transparent;
             color: #f7797d;
+        }
+    }
+    @media all and (max-width: 768px) {
+        width: 100%;
+        height: 50%;
+        button {
+            height: 70%;
+            width: 40%;
+            font-size: 1.4rem;
         }
     }
 `

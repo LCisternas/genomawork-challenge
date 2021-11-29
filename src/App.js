@@ -13,6 +13,9 @@ import UserProvider from './state/context/userContext';
 
 const ContenedorApp = styled.div`
   height: 100vh;
+  @media all and (max-width: 768px) {
+    height: 200vh;
+  }
 `
 
 function App() {

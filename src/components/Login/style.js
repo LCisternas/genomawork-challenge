@@ -5,6 +5,9 @@ export const ContenedorLogin = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+    @media all and (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 export const LoginImagen = styled.div`
     background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Imagen});
@@ -12,6 +15,9 @@ export const LoginImagen = styled.div`
     width: 50%;
     background-position: center;
     background-size: cover;
+    @media all and (max-width: 768px) {
+        width: 100%;
+    }
 `
 export const Content = styled.div`
     height: 100%;
@@ -35,6 +41,18 @@ export const Content = styled.div`
     }
     i {
         font-size: 2.5rem;
+    }
+    @media all and (max-width: 768px) {
+        h1 {
+            font-size: 3rem;
+            margin: 2rem 1rem;
+            text-align: center;
+        }
+        p{
+            font-size: 1.8rem;
+            margin: 2rem 1rem;
+            text-align: center;
+        }
     }
 `
 export const LoginForm = styled.div`
@@ -61,7 +79,7 @@ export const LoginForm = styled.div`
         display: flex;
         flex-direction: column;
         height: 80%;
-        width: 60%;
+        width: 75%;
         justify-content: space-evenly;
         align-items: center;
         background-color: white;
@@ -101,6 +119,23 @@ export const LoginForm = styled.div`
         &:hover {
             background: transparent;
             color: #FDB99B;
+        }
+    }
+    @media all and (max-width: 768px) {
+        width: 100%;
+        form {
+            width: 90%;
+        }
+        input {
+            width: 80%;
+        }
+        button {
+            width: 80%;
+        }
+    }
+    @media all and (min-width: 769px) and (max-width: 1200px) {
+        form {
+            width: 95%;
         }
     }
 `

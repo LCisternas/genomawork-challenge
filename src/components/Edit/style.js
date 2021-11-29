@@ -11,6 +11,13 @@ export const ContenedorEdit = styled.div`
         text-align: center;
         color: #f7797d;
     }
+    @media all and (max-width: 767px) {
+        height: 120vh;
+        h1 {
+            margin: 2rem 1rem;
+            font-size: 2.8rem;
+        }
+    }
 `
 export const Formulario = styled.form`
     width: 500px;
@@ -21,6 +28,9 @@ export const Formulario = styled.form`
     justify-content: space-evenly;
     background-color: #FDB99B;
     border-radius: 10px;
+    @media all and (max-width: 767px) {
+        width: 320px;
+    }
 `
 export const Input = styled.div`
     width: 80%;

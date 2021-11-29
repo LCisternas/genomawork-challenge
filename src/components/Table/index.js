@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import { ContenedorTable, Tabla, Titulos, Data, Boton } from './style';
+import { ContenedorTable, Tabla, Titulos, Data, Boton, RatingStar } from './style';
 
 import { OneRestaurant } from '../../state/actions/restaurantActions';
 import { DeleteRestaurant } from '../../state/actions/restaurantActions';
@@ -56,7 +56,7 @@ const Table = () => {
                             <td> {restaurant.name} </td>
                             <td> {restaurant.location} </td>
                             <td> {restaurant.food} </td>
-                            <td> <Rating name="read-only" value={restaurant.rating} size="large" readOnly /> </td>
+                            <td> <Rating name="read-only" value={restaurant.rating} readOnly /></td>
                             {restaurant.visited ? (<td>Visitado</td>) : (<td>Pendiente</td>)}
                             <td>  
                                 <Boton 

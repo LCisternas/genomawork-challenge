@@ -1,40 +1,41 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { PostRestaurant } from '../../state/actions/restaurantActions';
-
+import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar';
 
 import Swal from 'sweetalert2';
-import { ContenedorAdd, Formulario, Input, Boton } from './style';
+import { ContenedorEdit, Formulario, Input, Boton } from './style';
 
+import { UpdateRestaurant } from '../../state/actions/restaurantActions';
 
-const Add = () => {
+const Edit = () => {
 
     const dispatch = useDispatch()
-    const post = (info) => dispatch( PostRestaurant(info) )
+    const update = (info) => dispatch(UpdateRestaurant(info))
+    const editRestaurant = useSelector(state => state.restaurants.selectRestaurant)
+    const token = useSelector(state => state.auth.token) 
 
-    const token = useSelector(state => state.auth.token)
-
-    const [newRestaurant, setNew] = useState({
-        name: '',
-        location: '',
-        food: '',
-        rating: '',
-        visited: false
-    })
-    const { name, location, food, rating } = newRestaurant 
-
+    const [restaurant, setRestaurant] = useState(
+        {
+            id: editRestaurant.id,
+            name: editRestaurant.name,
+            location: editRestaurant.location,
+            food: editRestaurant.food,
+            rating: editRestaurant.rating,
+            visited: editRestaurant.visited
+        }
+    )
+    const { name, location, food, rating, visited } = restaurant
     const handleChange = e => {
-        setNew({
-            ...newRestaurant,
+        setRestaurant({
+            ...restaurant,
             [e.target.name]: e.target.value
         })
     }
     const history = useHistory()
     const redirect = () => {
         history.push('/home')
-    }
+    } 
     const handleSubmit = e => {
         e.preventDefault()
         if(name === '' || location === '' || food === '' || rating === '') {
@@ -43,16 +44,18 @@ const Add = () => {
                 title: 'No pueden haber campos vacios'
             })
         }
-        newRestaurant.rating = parseInt(rating)
-        const restaurant = [token, newRestaurant]
-        post(restaurant)
+        restaurant.visited = visited === 'true' ? true : false
+        restaurant.rating = parseInt(rating)
+        const info = [token, restaurant]
+        update(info)
         redirect()
     }
+    
 
     return (
-        <ContenedorAdd>
+        <ContenedorEdit>
             <Navbar />
-            <h1>Postear un nuevo Restaurant</h1>
+            <h1>Editar Restaurant</h1>
             <Formulario onSubmit={handleSubmit}>
                 <Input>
                     <label>Nombre</label>
@@ -92,12 +95,22 @@ const Add = () => {
                         onChange={handleChange}
                     />
                 </Input>
+                <Input>
+                    <label>Visita</label>
+                    <select
+                        value={visited}
+                        name='visited'
+                        onChange={handleChange}
+                    >   <option>true</option>
+                        <option>false</option>
+                    </select>
+                </Input>
                 <Boton
                     type='submit'
-                >Agregar</Boton>
+                >Editar</Boton>
             </Formulario>
-        </ContenedorAdd>
+        </ContenedorEdit>
     );
 }
  
-export default Add;
+export default Edit;

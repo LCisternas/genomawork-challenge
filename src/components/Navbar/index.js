@@ -8,7 +8,6 @@ const Navbar = () => {
 
     const dispatch = useDispatch()
     const token = "Token " + useSelector( state => state.auth.token )
-    console.log(token)
     const history = useHistory()
     const logout = (info) => dispatch( LogoutAuth(info) )
 

@@ -40,7 +40,7 @@ export const Content = styled.div`
 export const LoginForm = styled.div`
     background: linear-gradient(-45deg, #C6FFDD, #FDB99B, #f7797d);
 	background-size: 400% 400%;
-	animation: gradient 10s ease infinite;
+	animation: gradient 8s ease infinite;
     @keyframes gradient {
         0% {
             background-position: 0% 50%;

@@ -1,3 +1,6 @@
 export const GOOD_LOGIN = 'LOGIN_EXITOSO';
 export const GOOD_LOGOUT = 'GOOD_LOGOUT';
-export const GET_USER = 'GET_USER';
+export const GET_RESTAURANTS = 'GET_RESTAURANTS';
+export const ONE_RESTAURANT = 'ONE_RESTAURANT';
+export const UPDATE_STATE = 'UPDATE_STATE';
+export const NEW_RESTAURANT = 'NEW_RESTAURANT';

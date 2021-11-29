@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Login from './components/Login';
 import Home from './components/Home';
 import Add from './components/Add';
+import Edit from './components/Edit';
 import PrivateRoute from './components/PrivateRoute';
 import UserProvider from './state/context/userContext';
 
@@ -23,7 +24,8 @@ function App() {
             <Switch>
               <Route exact path="/" component={Login} />
               <PrivateRoute exact path='/home' component={Home} />
-              <PrivateRoute  exact path='/add' component={Add} />
+              <PrivateRoute exact path='/add' component={Add} />
+              <PrivateRoute exact path={`/edit/:id`} component={Edit} />
             </Switch>
           </ContenedorApp>
         </BrowserRouter>

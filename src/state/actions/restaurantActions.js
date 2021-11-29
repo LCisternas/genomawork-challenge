@@ -1,4 +1,4 @@
-import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT,DELETE_RESTAURANT } from '../type';
+import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT,DELETE_RESTAURANT, ASCENDENTE, DESCENDENTE, FILTRAR_PENDIENTES, FILTRAR_VISITADOS } from '../type';
 import axios from 'axios';
 
 export function AllRestaurant(info) {
@@ -92,4 +92,40 @@ export function DeleteRestaurant(info) {
 const deleteState = (info) => ({
     type: DELETE_RESTAURANT,
     payload: info
+})
+
+export function Ascendente() {
+    return async (dispatch) => {
+        dispatch( mayorAmenor() )
+    }
+}
+const mayorAmenor = () => ({
+    type: ASCENDENTE,
+})
+
+export function Descendente() {
+    return async(dispatch) => {
+        dispatch( menorAmayor() )
+    }
+}
+const menorAmayor = () => ({
+    type: DESCENDENTE,
+})
+
+export function FiltroPendientes() {
+    return async (dispatch) => {
+        dispatch( pendientes() )
+    }
+}
+const pendientes = (word) => ({
+    type: FILTRAR_PENDIENTES
+})
+
+export function FiltroVisitados() {
+    return async (dispatch) => {
+        dispatch( visitados() )
+    }
+}
+const visitados = () => ({
+    type: FILTRAR_VISITADOS
 })

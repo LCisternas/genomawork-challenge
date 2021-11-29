@@ -48,3 +48,39 @@ export const Boton = styled.button`
         border-radius: 5px;
     }
 `
+export const BotonOrden = styled.button`
+    height: 3.5rem;
+    width: 3rem;
+    margin: 1.5rem;
+    background: #f7797d;
+    color: #FDB99B;
+    border: 2px solid #f7797d;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+        background: transparent;
+        color: #f7797d;
+    }
+`
+export const ContenedorFiltro = styled.div`
+    display: flex;
+    align-items: center;
+`
+export const BotonFiltro = styled.button`
+    height: 3.5rem;
+    width: 100px;
+    margin: 0 1.5rem;
+    background: #f7797d;
+    border: 2px solid #f7797d;
+    border-radius: 5px;
+    color: #FDB99B;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+        background: transparent;
+        color: #f7797d;
+    }
+`

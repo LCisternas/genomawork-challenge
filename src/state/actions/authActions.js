@@ -2,6 +2,7 @@ import { GOOD_LOGIN, GOOD_LOGOUT } from '../type';
 import axiosLogin from '../../config/axiosLogin';
 import axiosLogout from '../../config/axiosLogout';
 
+/* Inicio Sesión */
 export function LoginAuth(info) {
     return async (dispatch) => {
         localStorage.setItem('datauser', info)
@@ -22,7 +23,9 @@ const successLogin = (info) => ({
     type: GOOD_LOGIN,
     payload: info
 })
+/* Inicio Sesión */
 
+/* Cierre Sesion */
 export function LogoutAuth(info) {
     return async (dispatch) => {
         try {
@@ -40,3 +43,4 @@ export function LogoutAuth(info) {
 const successLogout = () => ({
     type: GOOD_LOGOUT,
 })
+/* Cierre Sesion */

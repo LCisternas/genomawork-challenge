@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { PostRestaurant } from '../../state/actions/restaurantActions';
 
 import Navbar from '../Navbar';
 
 import Swal from 'sweetalert2';
 import { ContenedorAdd, Formulario, Input, Boton } from './style';
 
+import { PostRestaurant } from '../../state/actions/restaurantActions';
 
 const Add = () => {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const post = (info) => dispatch( PostRestaurant(info) )
 
@@ -31,7 +32,6 @@ const Add = () => {
             [e.target.name]: e.target.value
         })
     }
-    const history = useHistory()
     
     const handleSubmit = e => {
         e.preventDefault()

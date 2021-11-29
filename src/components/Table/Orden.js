@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { BotonOrden } from './style';
+
 import { Ascendente } from '../../state/actions/restaurantActions';
 import { Descendente } from '../../state/actions/restaurantActions';
 

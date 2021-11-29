@@ -3,7 +3,8 @@ import { GOOD_LOGIN, GOOD_LOGOUT } from '../type';
 const initialState = {
     token: localStorage.getItem('token'),
     authenticated: false,
-    user: {}
+    user: {},
+    cargando: true
 }
 
 export default function authReducer(state = initialState, action) {
@@ -19,7 +20,8 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 authenticated: true,
-                user: action.payload.user
+                user: action.payload.user,
+                cargando: false
             }
         default:
             return state

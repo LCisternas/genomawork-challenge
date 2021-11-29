@@ -40,7 +40,7 @@ export const Content = styled.div`
         font-weight: 600;
     }
     i {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     @media all and (max-width: 768px) {
         h1 {

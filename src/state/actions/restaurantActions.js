@@ -1,6 +1,9 @@
-import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT,DELETE_RESTAURANT, ASCENDENTE, DESCENDENTE, FILTRAR_PENDIENTES, FILTRAR_VISITADOS } from '../type';
+import { GET_RESTAURANTS, ONE_RESTAURANT, UPDATE_STATE, NEW_RESTAURANT, 
+    DELETE_RESTAURANT, ASCENDENTE, DESCENDENTE, 
+    FILTRAR_PENDIENTES, FILTRAR_VISITADOS } from '../type';
 import axios from 'axios';
 
+/* Consulta todos los Restaurantes */
 export function AllRestaurant(info) {
     return async (dispatch) => {
         try {
@@ -19,7 +22,9 @@ const todosLosRestaurantes = (info) => ({
     type: GET_RESTAURANTS,
     payload: info 
 })
+/* Consulta todos los Restaurantes */
 
+/* Consulta por Restaurant especifico */
 export function OneRestaurant(info) {
     return async (dispatch) => {
         try {
@@ -33,7 +38,9 @@ const restaurantEspecifico = (info) => ({
     type: ONE_RESTAURANT,
     payload: info
 })
+/* Consulta por Restaurant especifico */
 
+/* Actualiza un Restaurante */
 export function UpdateRestaurant(info) {
     return async (dispatch) => {
         try {
@@ -53,7 +60,9 @@ const updateState = (info) => ({
     type: UPDATE_STATE,
     payload: info
 })
+/* Actualiza un Restaurante */
 
+/* Crea un nuevo Restaurant */
 export function PostRestaurant(info) {
     return async (dispatch) => {
         try {
@@ -73,7 +82,9 @@ const addRestaurant = (info) => ({
     type: NEW_RESTAURANT,
     payload: info
 })
+/* Crea un nuevo Restaurant */
 
+/* Elimina un Restaurant */
 export function DeleteRestaurant(info) {
     return async (dispatch) => {
         try {
@@ -93,7 +104,9 @@ const deleteState = (info) => ({
     type: DELETE_RESTAURANT,
     payload: info
 })
+/* Elimina un Restaurant */
 
+/* Funcion que filtran los datos */
 export function Ascendente() {
     return async (dispatch) => {
         dispatch( mayorAmenor() )
@@ -129,3 +142,4 @@ export function FiltroVisitados() {
 const visitados = () => ({
     type: FILTRAR_VISITADOS
 })
+/* Funcion que filtran los datos */

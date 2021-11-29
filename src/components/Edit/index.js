@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
 import Navbar from '../Navbar';
 
 import Swal from 'sweetalert2';
@@ -10,6 +11,7 @@ import { UpdateRestaurant } from '../../state/actions/restaurantActions';
 
 const Edit = () => {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const update = (info) => dispatch(UpdateRestaurant(info))
     const editRestaurant = useSelector(state => state.restaurants.selectRestaurant)
@@ -26,13 +28,13 @@ const Edit = () => {
         }
     )
     const { name, location, food, rating, visited } = restaurant
+    
     const handleChange = e => {
         setRestaurant({
             ...restaurant,
             [e.target.name]: e.target.value
         })
     }
-    const history = useHistory()
 
     const handleSubmit = e => {
         e.preventDefault()

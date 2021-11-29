@@ -2,8 +2,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './state/store';
 
-import styled from 'styled-components';
-
 import Login from './components/Login';
 import Home from './components/Home';
 import Add from './components/Add';
@@ -11,6 +9,7 @@ import Edit from './components/Edit';
 import PrivateRoute from './components/PrivateRoute';
 import UserProvider from './state/context/userContext';
 
+import styled from 'styled-components';
 const ContenedorApp = styled.div`
   height: 100vh;
   @media all and (max-width: 768px) {

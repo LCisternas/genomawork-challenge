@@ -1,22 +1,23 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
 import Swal from 'sweetalert2';
-import { ContenedorTable, Tabla, Titulos, Data, Boton, RatingStar } from './style';
+import { ContenedorTable, Tabla, Titulos, Data, Boton } from './style';
+import Rating from '@mui/material/Rating';
 
 import { OneRestaurant } from '../../state/actions/restaurantActions';
 import { DeleteRestaurant } from '../../state/actions/restaurantActions';
 
-import Rating from '@mui/material/Rating';
-
 const Table = () => {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const selectRestaurant = (info) => dispatch( OneRestaurant(info) )
     const borrarRestaurant = (info) => dispatch( DeleteRestaurant(info) )
     const token = useSelector(state => state.auth.token)
     const restaurants = useSelector(state => state.restaurants.allRestaurants)
-    const history = useHistory()
+    
     const redirect = (id, info) => {
         selectRestaurant(info)
         history.push(`/edit/${id}`)

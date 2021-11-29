@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import Navbar from '../Navbar';
 import Table from '../Table';
 import Filtro from '../Table/Filtro';
 import Orden from '../Table/Orden';
 
 import { AllRestaurant } from '../../state/actions/restaurantActions';
-
 import { ContenedorHome, Filtros } from './style';
 
 const Home = () => {
@@ -24,6 +24,7 @@ const Home = () => {
             }
             restaurantes(token)
         }
+    // eslint-disable-next-line
     }, [])
     useEffect(() => {
 
